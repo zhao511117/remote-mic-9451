@@ -1,0 +1,10 @@
+{
+  "device": {"bluetooth_address": null, "container_key": null},
+  "features": {"extra_keys": false},
+  "audio": {"output_name": "CABLE Input (VB-Audio Virtual Cable)", "host_api": "Windows WASAPI"},
+  "applications": {
+    "workbuddy_executable": null,
+    "doubao_watchdog": null,
+    "codex_app_id": "OpenAI.Codex_2p2nqsd0c76g0!App"
+  }
+}

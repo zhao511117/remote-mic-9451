@@ -1,0 +1,26 @@
+name: Windows source tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          architecture: x64
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Unit tests (no remote, audio capture or Frida attach)
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH=(Join-Path $PWD 'src')
+          python -B -m unittest discover -s tests -v
+      - name: JavaScript key policy replay
+        run: node tests/key-policy.cjs src/rm9451/key_mapping.js
